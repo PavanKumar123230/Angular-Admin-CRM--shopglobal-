@@ -1,0 +1,90 @@
+<div class="d-flex" id="wrapper">
+  <app-navbar></app-navbar>
+  <div class="main-content flex-fill">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+      <!-- Hamburger toggle for mobile -->
+      <button class="btn btn-outline-dark d-lg-none me-2" id="menu-toggle">&#9776;</button>
+      <span class="navbar-text fw-semibold text-primary">WELCOME to CRM Admin</span>
+
+      <form class="d-flex ms-auto me-4">
+        <input class="form-control" type="search" placeholder="Search..." />
+      </form>
+
+      <div class="d-flex align-items-center">
+        <img src="assets/images/notification.svg" class="me-3" />
+        <img src="assets/images/profile.svg" />
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <div class="card shadow-lg border-0 rounded-4">
+        <!-- HEADER WITH FILTER -->
+        <div class="card-header bg-primary text-white d-flex flex-wrap justify-content-between align-items-center rounded-top-4 gap-2">
+          <h4 class="mb-0 fw-bold">Registered Companies</h4>
+
+          <div class="d-flex align-items-center gap-2">
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              placeholder="🔍 Search by Company Name..."
+              [(ngModel)]="searchTerm"
+              style="width: 220px;"
+            />
+            <button class="btn btn-light btn-sm" (click)="GetCompanyData()">
+              <i class="bi bi-arrow-clockwise"></i> Refresh
+            </button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- Loading state -->
+          <div *ngIf="!filteredCompanies?.length" class="text-center text-muted py-5">
+            <i class="bi bi-building fs-1 mb-3 d-block"></i>
+            <p class="mb-0">No company data found.</p>
+          </div>
+
+          <!-- Table display -->
+          <div class="table-responsive" *ngIf="filteredCompanies?.length">
+            <table class="table table-hover align-middle text-center">
+              <thead class="table-primary">
+                <tr>
+                  <th>#</th>
+                  <th>Company Name</th>
+                  <th>Customer Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>State</th>
+                  <th>Address</th>
+                  <th>Plan</th>
+                  <th>Valid Till</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let company of filteredCompanies; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td class="fw-semibold text-primary">{{ company.name }}</td>
+                  <td>{{ company.customerName }}</td>
+                  <td>{{ company.email }}</td>
+                  <td>{{ company.phone }}</td>
+                  <td>{{ company.state }}</td>
+                  <td>{{ company.address }}</td>
+                  <td class="text-capitalize">{{ company.subscription?.plan }}</td>
+                  <td>{{ company.subscription?.validTill | date: 'mediumDate' }}</td>
+                  <td>
+                    <span
+                      class="badge"
+                      [ngClass]="company.isBlocked ? 'bg-danger' : 'bg-success'"
+                    >
+                      {{ company.isBlocked ? 'Blocked' : 'Active' }}
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

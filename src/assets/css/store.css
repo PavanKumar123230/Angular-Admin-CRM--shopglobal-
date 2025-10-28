@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    padding: 40px;
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafb;
+  }
+  
+  .form-container {
+    max-width: 900px;
+    margin: auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin-bottom: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .upload-box {
+    border: 2px dashed #e2e8f0;
+    padding: 40px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: border-color 0.3s;
+  }
+  
+  .upload-box:hover {
+    border-color: #e53e3e;
+  }
+  
+  .upload-icon {
+    font-size: 32px;
+    color: #e53e3e;
+  }
+  
+  .upload-box p {
+    color: #4a5568;
+    font-size: 14px;
+  }
+  
+  .browse-text {
+    color: #e53e3e;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #1a202c;
+  }
+  
+  input,
+  select,
+  textarea {
+    padding: 12px 14px;
+    border: 1px solid #cbd5e0;
+    border-radius: 8px;
+    font-size: 14px;
+    background: #fefefe;
+    transition: border 0.3s;
+  }
+  
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #3182ce;
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  .button-group {
+    margin-top: 30px;
+    display: flex;
+    gap: 16px;
+  }
+  
+  .btn {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s;
+  }
+  
+  .btn-primary {
+    background-color: #e53e3e;
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: #c53030;
+  }
+  
+  .btn-secondary {
+    background-color: #edf2f7;
+    color: #1a202c;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #e2e8f0;
+  }
+  
+
+  
+  

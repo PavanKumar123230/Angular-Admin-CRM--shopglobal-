@@ -1,0 +1,56 @@
+<div class="d-flex" id="wrapper">
+  <app-navbar></app-navbar>
+  <div class="main-content flex-fill">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+      <!-- Hamburger toggle for mobile -->
+      <button class="btn btn-outline-dark d-lg-none me-2" id="menu-toggle">&#9776;</button>
+      <span class="navbar-text">WELCOME to CRM Admin</span>
+      <form class="d-flex ms-auto me-4">
+        <input class="form-control" type="search" placeholder="Search..." />
+      </form>
+      <div class="d-flex align-items-center">
+        <img src="assets/images/notification.svg" class="me-3" />
+        <img src="assets/images/profile.svg" />
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="card shadow-lg border-0 rounded-4 p-4">
+        <h3 class="text-center mb-4 text-primary fw-bold">Company Subscription</h3>
+    
+        <form [formGroup]="Form" (ngSubmit)="createSubscription()">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Subscription Plan</label>
+              <select class="form-select" formControlName="plan">
+                <option value="">Select Plan</option>
+                <option *ngFor="let plan of plans" [value]="plan">
+                  {{ plan | titlecase }}
+                </option>
+              </select>
+            </div>
+    
+            <div class="col-md-6">
+              <label class="form-label">Booking Limit</label>
+              <input
+                type="number"
+                class="form-control"
+                formControlName="bookingLimit"
+                placeholder="Enter booking limit"
+              />
+            </div>
+          </div>
+    
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-5 py-2 fw-semibold">
+              Add Subscription
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  

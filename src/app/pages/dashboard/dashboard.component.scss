@@ -1,0 +1,94 @@
+/* Sidebar and layout behavior */
+#wrapper {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    transition: all 0.3s;
+  }
+  
+  #sidebar.toggled {
+    margin-left: -250px;
+  }
+  
+  @media (max-width: 991.98px) {
+    #sidebar {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      height: 100%;
+      margin-left: -250px;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    #sidebar.toggled {
+      margin-left: 0;
+    }
+  
+    .main-content {
+      flex: 1;
+      padding-left: 0;
+    }
+  }
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #034f92;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.vendor-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  transition: 0.3s ease-in-out;
+  border-left: 6px solid #056bb5;
+}
+
+.vendor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.vendor-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #022e57;
+  margin-bottom: 5px;
+}
+
+.company {
+  font-size: 15px;
+  color: #666;
+  font-style: italic;
+}
+
+.info p,
+.bank-section p {
+  margin: 3px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.bank-section {
+  margin-top: 12px;
+  background: #f2f8ff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.bank-section h6 {
+  font-weight: 600;
+  color: #034f92;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+  

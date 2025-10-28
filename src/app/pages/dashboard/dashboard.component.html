@@ -1,0 +1,63 @@
+<!-- Wrapper -->
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar -->
+  <app-navbar></app-navbar>
+
+  <!-- Page Content -->
+  <div class="main-content flex-fill">
+
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+      <button class="btn btn-outline-dark d-lg-none me-2" id="menu-toggle">&#9776;</button>
+      <span class="navbar-text">WELCOME to CRM Admin</span>
+
+      <!-- 🔍 Live Search Input -->
+      <form class="d-flex ms-auto me-4">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Search vendor..."
+          [(ngModel)]="searchText"
+          name="search"
+          (input)="filterVendors()"
+        />
+      </form>
+
+      <div class="d-flex align-items-center">
+        <img src="assets/images/notification.svg" class="me-3" />
+        <img src="assets/images/profile.svg" />
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <h2 class="page-title">Vendor Directory</h2>
+
+      <div *ngIf="!filteredVendors?.length" class="text-center text-muted py-5">
+        <i class="bi bi-building fs-1 mb-3 d-block"></i>
+        <p class="mb-0">No vendor data found.</p>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let vendor of filteredVendors">
+          <div class="vendor-card shadow-lg">
+            <h5 class="vendor-name">{{ vendor.displayName || vendor.name }}</h5>
+            <p class="company">{{ vendor.companyName }}</p>
+            <hr />
+            <div class="info">
+              <p><strong>📍 Address:</strong> {{ vendor.address }}</p>
+              <p><strong>📞 Mobile:</strong> {{ vendor.mobile }}</p>
+              <p><strong>☎️ Work Phone:</strong> {{ vendor.workPhone }}</p>
+            </div>
+            <div class="bank-section">
+              <h6>Bank Details</h6>
+              <p><strong>Bank:</strong> {{ vendor.bankDetails?.bankName }}</p>
+              <p><strong>A/c No:</strong> {{ vendor.bankDetails?.accountNumber }}</p>
+              <p><strong>IFSC:</strong> {{ vendor.bankDetails?.ifscCode }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

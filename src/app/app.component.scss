@@ -1,0 +1,26 @@
+.dropdown-toggle-icon {
+    font-size: 0.8rem;
+  }
+  .sidebar-icon {
+    width: 20px;
+  }
+
+  @media (max-width: 768px) {
+    #sidebar {
+      position: fixed;
+      z-index: 1000;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    #sidebar.show {
+      transform: translateX(0);
+    }
+  }
+.icon-bar{
+    margin-left: 38px;
+
+}
+.icon{
+    margin-left: 73px;
+
+}
