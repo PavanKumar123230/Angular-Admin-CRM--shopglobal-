@@ -79,6 +79,7 @@ export class CreateCompanyComponent implements OnInit {
           // ✅ Redirect after short delay (optional for smooth UX)
           setTimeout(() => {
             window.location.href = 'https://nextlogisticss.com/cloud/clogin';
+          
           });
         },
         error: (err) => {

@@ -15,7 +15,7 @@ const routes: Routes = [
 
   // { path: 'addstore', component: AddStoreComponent, canActivate: [authGuard] },
   { path: 'addcompany', component: CreateCompanyComponent, canActivate: [authGuard] },
-  { path: 'addcompany', component: CreateCompanyComponent,  },
+  { path: 'company', component: CreateCompanyComponent,  },
 
   { path: 'vendor', component: VendorComponent, canActivate: [authGuard] },
   { path: 'subcription', component: SubscriptionComponent, canActivate: [authGuard] },
