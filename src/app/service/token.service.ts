@@ -33,10 +33,17 @@ export class TokenService {
   // }
 
   public getToken(): string | null {
-    const token = this.token;
-    // console.log('Token retrieved:', token);
-    return token;
+    return localStorage.getItem('auth-token');
   }
+  
+
+  
+
+  // public getToken(): string | null {
+  //   const token = this.token;
+  //   console.log('Token retrieved:', token);
+  //   return token;
+  // }
 
   public saveUser(user: any): void {
     this.user = user;
