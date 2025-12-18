@@ -62,7 +62,7 @@
               </thead>
               <tbody>
                 <tr *ngFor="let company of filteredCompanies; let i = index">
-                  <td>{{ i + 1 }}</td>
+                  <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
                   <td class="fw-semibold text-primary">{{ company.name }}</td>
                   <td>{{ company.customerName }}</td>
                   <td>{{ company.email }}</td>
@@ -72,21 +72,55 @@
                   <td class="text-capitalize">{{ company.subscription?.plan }}</td>
                   <td>{{ company.subscription?.validTill | date: 'mediumDate' }}</td>
                   <td>
-                    <span
-                      class="badge"
-                      [ngClass]="company.isBlocked ? 'bg-danger' : 'bg-success'"
-                    >
+                    <span class="badge" [ngClass]="company.isBlocked ? 'bg-danger' : 'bg-success'">
                       {{ company.isBlocked ? 'Blocked' : 'Active' }}
                     </span>
                   </td>
                 </tr>
               </tbody>
+              
             </table>
           </div>
         </div>
       </div>
     </div>
+<!-- Pagination Controls -->
+<nav *ngIf="filteredCompanies?.length" class="mt-3 d-flex justify-content-end mx-2">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changePage(currentPage - 1)">
+        ‹ Prev
+      </button>
+    </li>
 
-    
+    <li
+      class="page-item"
+      *ngFor="let page of [].constructor(totalPages); let i = index"
+      [class.active]="currentPage === i + 1"
+    >
+      <button class="page-link" (click)="changePage(i + 1)">
+        {{ i + 1 }}
+      </button>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <button class="page-link" (click)="changePage(currentPage + 1)">
+        Next ›
+      </button>
+    </li>
+  </ul>
+</nav>
+
   </div>
+
 </div>
+
+
+
+
+
+
+
+
+
+

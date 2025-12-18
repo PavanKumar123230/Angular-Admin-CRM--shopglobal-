@@ -1,7 +1,6 @@
 <!-- ✅ ADMIN VIEW (Sidebar + Navbar) -->
 <div class="d-flex" id="wrapper" *ngIf="!isPublicView">
   <app-navbar></app-navbar>
-
   <div class="main-content flex-fill">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
@@ -24,19 +23,24 @@
     </div>
   </div>
 </div>
+
 <!-- ✅ PUBLIC VIEW (No sidebar/navbar) -->
-<div class="container mt-5" *ngIf="isPublicView">
+<div class="container " *ngIf="isPublicView"   >
+
   <div class="card shadow-sm mx-auto" style="max-width: 900px; border-radius: 15px;">
+    <div class="text-center">     <img src="assets/images/black.png" alt="" srcset=""  >
+    </div>
+
     <div class="card-body p-4">
-      <ng-container *ngTemplateOutlet="companyForm"></ng-container>
+      <ng-container *ngTemplateOutlet="companyForm">
+</ng-container>
     </div>
   </div>
 </div>
 
 <!-- ✅ SHARED FORM TEMPLATE -->
-<ng-template #companyForm>
+<ng-template #companyForm >
   <h2 class="text-center mb-4 text-dark fw-bold">Company Registration</h2>
-
   <form [formGroup]="Form" (ngSubmit)="createCompany()">
     <!-- Company Name -->
     <div class="mb-3">
@@ -122,4 +126,5 @@
     <!-- Submit -->
     <button type="submit" class="btn btn-primary w-100">Submit</button>
   </form>
+  
 </ng-template>
