@@ -148,17 +148,34 @@ export class AdminService {
 
 
 
-  GetCompanies(){
-    const token1 = this.token.getToken();
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + token1
-      })
-    }
-      return this.http.get(AUTH_CRM +'company/get-companies',
-       httpOptions);
-  }
+  // GetCompanies(){
+  //   const token1 = this.token.getToken();
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Bearer ' + token1
+  //     })
+  //   }
+  //     return this.http.get(AUTH_CRM +'company/get-companies',
+  //      httpOptions);
+  // }
+
+
+
+GetCompanies(): Observable<any[]> {
+  const token1 = this.token.getToken();
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token1
+    })
+  };
+
+  return this.http.get<any[]>(
+    AUTH_CRM + 'company/get-companies',
+    httpOptions
+  );
+}
 
 
 

@@ -1,0 +1,223 @@
+<section class="hero-section d-flex align-items-center position-relative" id="home">
+
+  <div class="hero-overlay"></div>
+  <div class="container-fluid px-0 position-relative">
+    <div class="row align-items-center min-vh-100 mx-0">
+
+      <!-- LEFT CONTENT -->
+      <!-- <div class="col-lg-6 px-4 px-lg-5 text-white">
+        <h1 class="display-4 fw-bold mb-3">
+          <span class="brand-accent">SHOPGLOBAL</span> Logistics
+        </h1>
+
+        <h2 class="fw-bold mb-4 hero-subtitle">
+          Join 44,000+ small businesses that trust us to deliver.
+        </h2>
+        <p class="lead opacity-90">
+          B2C Express Parcel <br>
+          B2B Part Truck Load
+        </p>
+      </div> -->
+      <div class="col-lg-6 px-4 px-lg-5 hero-content">
+
+        <span class="hero-badge">
+          Trusted by 44,000+ Businesses
+        </span>
+
+        <h1 class="hero-title">
+          <span class="brand-accent">SHOPGLOBAL</span><br>
+          Smart Logistics Platform
+        </h1>
+
+        <p class="hero-description">
+          Powering fast, reliable, and cost-effective deliveries across India.
+          Built for growing businesses who need scale without complexity.
+        </p>
+
+        <ul class="hero-points">
+          <li>📦 B2C Express Parcel Delivery</li>
+          <li>🚚 B2B Part Truck Load (PTL)</li>
+          <li>📍 Pan-India Coverage</li>
+          <li>⚡ Real-time Tracking & Control</li>
+        </ul>
+      </div>
+      <!-- RIGHT FORM -->
+      <div class="col-lg-5 ms-lg-auto px-4 px-lg-5 mt-3 mb-3 ">
+        <div class="hero-form card border-0 shadow-lg rounded-4">
+          <div class="card-body p-4 p-md-5">
+
+            <h3 class="fw-bold mb-4 text-dark">
+              Reliability Begins At Our Door
+            </h3>
+
+            <form [formGroup]="companyForm" (ngSubmit)="createCompany()">
+
+              <!-- Company Name -->
+              <div class="mb-3">
+                <input type="text" class="form-control form-control-lg" placeholder="Company Name"
+                  formControlName="name"
+                  [class.is-invalid]="companyForm.get('name')?.touched && companyForm.get('name')?.invalid">
+                <div class="invalid-feedback">
+                  Company name is required
+                </div>
+              </div>
+              <!-- Customer Name -->
+              <div class="mb-3">
+                <input type="text" class="form-control form-control-lg" placeholder="Customer Name"
+                  formControlName="customerName"
+                  [class.is-invalid]="companyForm.get('customerName')?.touched && companyForm.get('customerName')?.invalid">
+                <div class="invalid-feedback">
+                  customer name is required
+                </div>
+              </div>
+              <!-- Email -->
+              <div class="mb-3">
+                <input type="email" class="form-control form-control-lg" placeholder="Email Address"
+                  formControlName="email"
+                  [class.is-invalid]="companyForm.get('email')?.touched && companyForm.get('email')?.invalid">
+                <div class="invalid-feedback">
+                  Email id is required
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="input-group input-group-lg">
+
+                  <span class="input-group-text">+91</span>
+
+                  <input type="tel" class="form-control" placeholder="Mobile Number" formControlName="phone"
+                    maxlength="10" inputmode="numeric" pattern="[0-9]*" (keypress)="allowOnlyNumbers($event)"
+                    [class.is-invalid]="companyForm.get('phone')?.touched && companyForm.get('phone')?.invalid">
+
+                </div>
+
+                <!-- ERROR MESSAGES -->
+                <div class="invalid-feedback d-block"
+                  *ngIf="companyForm.get('phone')?.touched && companyForm.get('phone')?.invalid">
+
+                  <div *ngIf="companyForm.get('phone')?.errors?.['required']">
+                    Mobile number is required
+                  </div>
+
+                  <div *ngIf="companyForm.get('phone')?.errors?.['pattern']">
+                    Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9
+                  </div>
+
+                </div>
+              </div>
+
+
+              <!-- Password -->
+              <div class="mb-3 position-relative">
+                <input [type]="showPassword ? 'text' : 'password'" class="form-control form-control-lg pe-5"
+                  placeholder="Password (Min 6 characters)" formControlName="password"
+                  [class.is-invalid]="companyForm.get('password')?.touched && companyForm.get('password')?.invalid">
+
+                <!-- Eye Icon -->
+                <i class="bi" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" class="password-toggle"
+                  (click)="togglePassword()">
+                </i>
+              </div>
+
+              <!-- Address -->
+              <div class="mb-3">
+                <!-- <input type="text" class="form-control form-control-lg" placeholder="Address" formControlName="address"> -->
+
+                <input type="tel" class="form-control" placeholder="address" formControlName="address"
+                  [class.is-invalid]="companyForm.get('address')?.touched && companyForm.get('address')?.invalid">
+                <div class="invalid-feedback">
+                  address is required
+                </div>
+              </div>
+              <!-- State -->
+              <div class="mb-3">
+                <!-- <input type="text" class="form-control form-control-lg" placeholder="State" formControlName="state"> -->
+                <input type="tel" class="form-control" placeholder="State" formControlName="state"
+                  [class.is-invalid]="companyForm.get('state')?.touched && companyForm.get('state')?.invalid">
+                <div class="invalid-feedback">
+                  state is required
+                </div>
+              </div>
+              <!-- Parent Company ID -->
+              <div class="mb-3">
+                <!-- <input type="text" class="form-control form-control-lg" placeholder="Parent Company ID"
+                  formControlName="parentCompanyId"> -->
+                <input type="tel" class="form-control" placeholder="Parent Company ID" formControlName="parentCompanyId"
+                  [class.is-invalid]="companyForm.get('parentCompanyId')?.touched && companyForm.get('parentCompanyId')?.invalid">
+                <div class="invalid-feedback">
+                  Parent CompanyId is required
+                </div>
+              </div>
+              <!-- 
+              <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="terms">
+                <label class="form-check-label small text-muted" for="terms">
+                  By continuing, you agree to our Terms & Privacy Policy
+                </label>
+              </div> -->
+
+              <!-- Submit -->
+              <button class="btn btn-dark btn-lg w-100" type="submit" [disabled]="loading">
+                {{ loading ? 'Creating Account...' : 'Create Account' }}
+              </button>
+
+
+              <!-- <div class="text-center small text-muted mb-3">
+                Not looking for parcel shipping?
+                <br>
+                <a href="#">Cargo</a> •
+                <a href="#">Franchisee</a> •
+                <a href="#">Jobs</a>
+              </div>
+
+              <div class="text-center">
+                <a href="#" class="text-primary fw-semibold">
+                  Already have an account? Login
+                </a>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="text-center">
+                <a href="#" class="text-primary small">
+                  Track your shipments here
+                </a>
+              </div> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SUCCESS MODAL -->
+<div class="modal fade" id="successModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content rounded-4 border-0">
+
+      <div class="modal-body text-center p-5">
+
+        <div class="success-icon mb-3">🎉</div>
+
+        <h3 class="fw-bold mb-2">Congratulations!</h3>
+
+        <p class="text-muted mb-4">
+          Your company account has been created successfully.
+        </p>
+
+        <div class="credentials-box text-start mb-4">
+          <p><strong>Email:</strong> {{ successData?.email }}</p>
+          <p><strong>Password:</strong> {{ successData?.password }}</p>
+        </div>
+
+        <p class="small text-muted mb-4">
+          Please save these credentials securely.
+        </p>
+
+        <button class="btn btn-primary w-100" (click)="redirectToLogin()">
+          Go to Login
+        </button>
+
+      </div>
+    </div>
+  </div>
+</div>

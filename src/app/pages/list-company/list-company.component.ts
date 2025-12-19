@@ -1,43 +1,3 @@
-// import { Component, OnInit } from '@angular/core';
-// import { AdminService } from 'src/app/service/admin.service';
-// import { ToastrService } from 'ngx-toastr';
-
-// @Component({
-//   selector: 'app-list-company',
-//   templateUrl: './list-company.component.html',
-//   styleUrls: ['./list-company.component.scss'],
-// })
-// export class ListCompanyComponent implements OnInit {
-//   companyList: any[] = [];
-//   searchTerm: string = '';
-
-//   constructor(private api: AdminService, private toastr: ToastrService) {}
-
-//   ngOnInit(): void {
-//     this.GetCompanyData();
-//   }
-//   GetCompanyData(): void {
-//     this.api.GetCompanies().subscribe({
-//       next: (res: any) => {
-//   console.log(res)
-//         this.companyList = res?.data || res;
-//         this.toastr.success('Companies data fetched successfully!');
-//       },
-//       error: (err) => {
-//         console.error(err);
-//         this.toastr.error(err?.error?.message || 'Failed to fetch company data');
-//       },
-//     });
-//   }
-//   get filteredCompanies() {
-//     const term = this.searchTerm.toLowerCase().trim();
-//     if (!term) return this.companyList;
-//     return this.companyList.filter((company) =>
-//       company.name?.toLowerCase().includes(term)
-//     );
-//   }
-// }
-
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { ToastrService } from 'ngx-toastr';
@@ -48,55 +8,82 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./list-company.component.scss'],
 })
 export class ListCompanyComponent implements OnInit {
+
   companyList: any[] = [];
   searchTerm: string = '';
+
   currentPage: number = 1;
   itemsPerPage: number = 10;
 
-  constructor(private api: AdminService, private toastr: ToastrService) {}
+  loading: boolean = false;
+
+  constructor(
+    private api: AdminService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
-    this.GetCompanyData();
+    this.getCompanyData();
   }
 
-  GetCompanyData(): void {
+  // ================= FETCH COMPANIES =================
+  getCompanyData(): void {
+    this.loading = true;
+    this.currentPage = 1;
+
     this.api.GetCompanies().subscribe({
-      next: (res: any) => {
-        this.companyList = res?.data || res;
-        this.toastr.success('Companies data fetched successfully!');
+      next: (res: any[]) => {
+        console.log('API RESPONSE:', res);
+
+        // ✅ API RETURNS ARRAY DIRECTLY
+        this.companyList = Array.isArray(res) ? res : [];
+
+        this.loading = false;
+        this.toastr.success('Companies loaded successfully');
       },
       error: (err) => {
         console.error(err);
-        this.toastr.error(err?.error?.message || 'Failed to fetch company data');
-      },
+        this.loading = false;
+        this.toastr.error('Failed to load companies');
+      }
     });
   }
 
-  get filteredCompanies() {
-    const term = this.searchTerm.toLowerCase().trim();
-    let filtered = !term
-      ? this.companyList
-      : this.companyList.filter((company) =>
-          company.name?.toLowerCase().includes(term)
-        );
+  // ================= SEARCH FILTER =================
+  get filteredCompanies(): any[] {
+    if (!this.searchTerm.trim()) {
+      return this.companyList;
+    }
 
-    // Pagination slice
+    const term = this.searchTerm.toLowerCase();
+    return this.companyList.filter(company =>
+      company.name?.toLowerCase().includes(term)
+    );
+  }
+
+  // ================= PAGINATION =================
+  get paginatedCompanies(): any[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    return filtered.slice(startIndex, startIndex + this.itemsPerPage);
+    return this.filteredCompanies.slice(
+      startIndex,
+      startIndex + this.itemsPerPage
+    );
   }
 
   get totalPages(): number {
-    const totalFiltered = !this.searchTerm
-      ? this.companyList.length
-      : this.companyList.filter((company) =>
-          company.name?.toLowerCase().includes(this.searchTerm.toLowerCase())
-        ).length;
-    return Math.ceil(totalFiltered / this.itemsPerPage);
+    return Math.ceil(this.filteredCompanies.length / this.itemsPerPage);
   }
 
-  changePage(page: number) {
+  get pages(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  changePage(page: number): void {
     if (page < 1 || page > this.totalPages) return;
     this.currentPage = page;
   }
-}
 
+  onSearchChange(): void {
+    this.currentPage = 1;
+  }
+}

@@ -9,19 +9,20 @@ import { CreateCompanyComponent } from './pages/create-company/create-company.co
 import { VendorComponent } from './pages/vendor/vendor.component';
 import { SubscriptionComponent } from './pages/subscription/subscription.component';
 import { ListCompanyComponent } from './pages/list-company/list-company.component';
+import { CompanyComponent } from './pages/company/company.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
 
   // { path: 'addstore', component: AddStoreComponent, canActivate: [authGuard] },
   { path: 'addcompany', component: CreateCompanyComponent, canActivate: [authGuard] },
-  { path: 'company', component: CreateCompanyComponent,  },
-  
+  // { path: 'company', component: CreateCompanyComponent,  },
+  { path: 'company', component: CompanyComponent, },
+
 
   { path: 'vendor', component: VendorComponent, canActivate: [authGuard] },
   { path: 'subcription', component: SubscriptionComponent, canActivate: [authGuard] },
   { path: 'companies', component: ListCompanyComponent, canActivate: [authGuard] },
-
 
   { path: 'login', component: LoginComponent },
   // { path: '', redirectTo: '/login', pathMatch: 'full' },

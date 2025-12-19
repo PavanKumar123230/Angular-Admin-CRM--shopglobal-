@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { VendorComponent } from './pages/vendor/vendor.component';
 import { SubscriptionComponent } from './pages/subscription/subscription.component';
 import { ListCompanyComponent } from './pages/list-company/list-company.component';
+import { CompanyComponent } from './pages/company/company.component';
 
 
 
@@ -30,6 +31,7 @@ import { ListCompanyComponent } from './pages/list-company/list-company.componen
     VendorComponent,
     CreateCompanyComponent,
     ListCompanyComponent,
+    CompanyComponent,
     
   ],
   imports: [
