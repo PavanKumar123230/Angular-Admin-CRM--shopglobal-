@@ -19,7 +19,7 @@ const routes: Routes = [
   // { path: 'company', component: CreateCompanyComponent,  },
   { path: 'company', component: CompanyComponent, },
 
-
+// 
   { path: 'vendor', component: VendorComponent, canActivate: [authGuard] },
   { path: 'subcription', component: SubscriptionComponent, canActivate: [authGuard] },
   { path: 'companies', component: ListCompanyComponent, canActivate: [authGuard] },
